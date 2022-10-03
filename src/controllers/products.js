@@ -3,7 +3,8 @@ const Products = require("../models/products");
 
 const getStatus = (req, res) => {
     products.find()
-        .then((response) => res.status(200).json({ msg: "Connection OK"}));
+        .then((response) => res.status(200).json({ msg: "Connection OK"}))
+        .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 }
 
 const getAll = (req, res) => {
@@ -13,14 +14,14 @@ const getAll = (req, res) => {
 }
 
 const getProductById = (req, res) => {
-    const { productId } = req.params
+    const { productId } = req.params;
     Products.find({_id: productId})
         .then((data) => res.json({ data }))
         .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 }
 
 const getProductByName = (req, res) => {
-    const { productName } = req.params
+    const { productName } = req.params;
     Products.find({name: productName})
         .then((data) => res.json({ data }))
         .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
