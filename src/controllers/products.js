@@ -1,12 +1,9 @@
 const Products = require("../products");
 
 const getAll = (req, res) => {
-    /*
-    Products.find({ isDeleted: false })
+    Products.find()
       .then((data) => res.json({ data }))
       .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
-      */
-    console.log("Execute the function get all, but it isn´t working properly")
 }
 
 const create = (req, res) => {
