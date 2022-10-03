@@ -13,6 +13,13 @@ const getProductById = (req, res) => {
         .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 }
 
+const getProductByName = (req, res) => {
+    const { productName } = req.params
+    Products.find({name: productName})
+        .then((data) => res.json({ data }))
+        .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+}
+
 const create = (req, res) => {
     const newProduct = {
         name: req.body.name,
@@ -48,6 +55,7 @@ const remove = (req, res) => {
 module.exports = {
     getAll,
     getProductById,
+    getProductByName,
     create,
     update,
     remove
