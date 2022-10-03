@@ -46,21 +46,21 @@ const remove = (req, res) => {
 
 const update = (req, res) => {
     const { id } = req.params;
-    Products.findByIdAndUpdate(id, req.body, { new: true })
+    Products.findByIdAndUpdate(id, req.body)
       .then((data) => {
-        if (data.length === 0) return res.status(404).json({ msg: `Product not found by ID: ${id}` });
+        if (data.length === 0) {
+            return res.status(404).json({ msg: `Product not found by ID: ${id}` });
+        } 
         return res.json({ msg: "Product updated", data });
       })
       .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
-
-
 module.exports = {
     getAll,
     getProductById,
     getProductByName,
+    remove,
     create,
-    update,
-    remove
+    update    
 };
