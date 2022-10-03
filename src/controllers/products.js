@@ -2,8 +2,15 @@ const Products = require("../products");
 
 const getAll = (req, res) => {
     Products.find()
-      .then((data) => res.json({ data }))
-      .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+        .then((data) => res.json({ data }))
+        .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
+}
+
+const getProductById = (req, res) => {
+    const { productId } = req.params
+    Products.find({_id: productId})
+        .then((data) => res.json({ data }))
+        .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 }
 
 const create = (req, res) => {
@@ -14,7 +21,7 @@ const create = (req, res) => {
         description: req.body.description
     };
     Products.create(newProduct)
-      .then((data) => res.json({ msg: "Product in shop parcial01 was added: ", data }))
+      .then((data) => res.json({ msg: "Product in shop parcial01 was added with the data: ", data }))
       .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
@@ -40,6 +47,7 @@ const remove = (req, res) => {
 
 module.exports = {
     getAll,
+    getProductById,
     create,
     update,
     remove
