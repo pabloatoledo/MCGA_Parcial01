@@ -1,4 +1,10 @@
+const products = require("../models/products");
 const Products = require("../models/products");
+
+const getStatus = (req, res) => {
+    products.find()
+        .then((response) => res.status(200).json({ msg: "Connection OK"}));
+}
 
 const getAll = (req, res) => {
     Products.find()
@@ -57,6 +63,7 @@ const update = (req, res) => {
 };
 
 module.exports = {
+    getStatus,
     getAll,
     getProductById,
     getProductByName,
