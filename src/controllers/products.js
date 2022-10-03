@@ -6,16 +6,18 @@ const getAll = (req, res) => {
       .then((data) => res.json({ data }))
       .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
       */
-    console.log("Hola mundo")
+    console.log("Execute the function get all, but it isn´t working properly")
 }
 
 const create = (req, res) => {
     const newProduct = {
         name: req.body.name,
-        description: req.body.description,
+        price: req.body.price,
+        stock: req.body.stock,
+        description: req.body.description
     };
     Products.create(newProduct)
-      .then((data) => res.json({ msg: "Product added: ", data }))
+      .then((data) => res.json({ msg: "Product in shop parcial01 was added: ", data }))
       .catch((err) => res.status(500).json({ msg: `Error: ${err}` }));
 };
 
